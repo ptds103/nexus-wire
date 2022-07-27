@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+.bg{
+    position: fixed;
+    top: 56px;
+    left: 0;
+    min-width: 100%;
+    z-index: -1;
+}
+.text1{
+    position: absolute;
+    color: black;
+    font-size: 50px;
+    left: 50px;
+    font-weight:900;
+    top: 230px;    
+}
+
+.bg2{
+    text-align:center;
+    position:absolute;
+    top: 750px;
+    left: 140px;
+}
+.bg3{
+    text-align:center;
+    position:absolute;
+    top: 750px;
+    left: 740px;
+}
+
+
+.bg4{
+    text-align:center;
+    position:absolute;
+    top: 750px;
+    left: 1300px;
+}
+
+.text2{
+    text-align: center;
+    margin:20px 0px 0px 0px;
+    width:200px;
+    font-weight: bold;
+}
+.tag{
+    text-decoration: none;
+    color:black;
+}

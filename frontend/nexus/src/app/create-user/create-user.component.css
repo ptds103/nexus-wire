@@ -1,0 +1,30 @@
+.boxbox {
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  width: 634px;
+  height: 585px;
+  background: #f3f3f3;
+}
+
+.welcome{
+    padding-top: 40px;
+    padding-left: 40px;
+}
+.pee{
+    padding-top: 20px;
+    padding-left: 40px;
+}
+
+.form-group{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.btn-success{
+    margin-top: 50px;
+    margin-left: 500px;
+    background-color:#64ffb5 ;
+    border-color: #64ffb5;
+    color: black;
+}

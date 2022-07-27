@@ -1,0 +1,109 @@
+
+.accountPage {
+  margin: 150px;
+  margin-bottom: 0px;
+  margin-top: 40px;
+}
+.title {
+  margin-bottom: 60px;
+}
+.planOuterBox {
+  display: inline-block;
+  width: 950px;
+  background: #ffffff;
+  border: 0.5px solid #cdcdcd;
+}
+.planBox {
+  margin: 40px;
+}
+.underPlan1 {
+  display: inline-block;
+  text-align: start;
+}
+.underPlan2 {
+  position: relative;
+  left: 705px;
+  text-align: end;
+  text-decoration: none;
+}
+
+.planBox1 {
+  display: inline-block;
+  margin-right: 120px;
+}
+.detail {
+  margin: 0px;
+  margin-top: 15px;
+}
+.planBox2 {
+  display: inline-block;
+  margin-right: 120px;
+}
+.planBox3 {
+  display: inline-block;
+}
+.planBox4 {
+  margin-left: 765px;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+.planInnerBox {
+  width: 100%;
+  height: 320px;
+  left: 258px;
+  top: 889px;
+  margin-top: 10px;
+  background: #f9f9f9;
+  border: 1px solid #dadada;
+}
+
+.planIndivBox {
+  height: 265px;
+  width: 180px;
+  margin: 30px;
+  display: inline-block;
+  background-color: white;
+  border: 1px solid #dadada;
+  text-align: center;
+}
+.planImage {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 55%;
+}
+
+.detail2 {
+  text-align: left;
+  margin-left: 40px;
+  margin-bottom: 0px;
+  line-height: 18px;
+  font-size: 10px;
+}
+
+.check1 {
+  display: inline-block;
+  margin-right: 100px;
+}
+.check2 {
+  display: inline-block;
+  margin-right: 100px;
+}
+
+.check3 {
+  margin-left: 740px;
+  font-weight: bold;
+  text-decoration: none;
+  color: red;
+}
+.rightBox{
+    position:fixed;
+    margin-left: 100px;
+    display: inline-block;
+    border: 1px solid #dadada;
+    height: 645px;
+    width: 320px;
+}
+.infoBox{
+    margin:20px;
+}

@@ -1,0 +1,88 @@
+.planHead {
+  margin: auto;
+  width: 1105px;
+  height: 327px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 80.7628px;
+  line-height: 90px;
+  text-align: center;
+  color: lightgrey;
+}
+
+.planDetail {
+  margin: auto;
+  width: 569px;
+  height: 64px;
+  left: 579px;
+  top: 563px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26.1343px;
+  line-height: 32px;
+  text-align: center;
+  color: lightgrey;
+}
+
+.planDetail2 {
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  width: 1351px;
+  height: 41px;
+  left: 209px;
+  top: 723px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 33.6421px;
+  line-height: 41px;
+  /* identical to box height */
+
+  text-align: center;
+  color: lightgrey;
+}
+.plan {
+  text-align: center;
+}
+.plan1 {
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 15px;
+  width: 400px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 0px;
+}
+
+.p0 {
+  border-radius: 15px;
+  padding: 20px;
+  background-color: aqua;
+}
+.p1 {
+  border-radius: 15px;
+  padding: 20px;
+  background-color: aquamarine;
+}
+.p2 {
+  border-radius: 15px;
+  padding: 20px;
+  background-color: #64ffb5;
+}
+
+.planName {
+  font-weight: bolder;
+  margin-bottom: 50px;
+}
+.earth {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  height: 550px;
+  min-width: 100%;
+  z-index: -1;
+}

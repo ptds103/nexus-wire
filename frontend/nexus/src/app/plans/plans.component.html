@@ -1,0 +1,27 @@
+<div class="planHead">
+  Getting an <br />
+  umlimited plan has never been this easy.
+  <img class="earth" [src]="myearth" alt="" width="55px" />
+</div>
+
+<p class="planDetail">
+  Three simple plans all with 5G. Choose our new Freedom plan fo free
+  international calls
+</p>
+<p class="planDetail2">
+  First, how many phone lines would you like? There's a 5G Unlimited plan for
+  everyone
+</p>
+
+<div class="plan">
+  <div class="plan1" *ngFor="let plan of plans; index as i">
+    <div class="p{{ i }}">
+      <h1 class="planName">
+        {{ plan.planName.toUpperCase() }} ${{ plan.pricePerLine }}
+      </h1>
+      <p>------------------PER MONTH ----------------</p>
+      <p>Device Limit: {{ plan.deviceLimit }}</p>
+      <p>Features: {{ plan.description }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="cont">
+
+
+<h1 style="font-weight: bolder;"> Devices</h1>
+
+<div class="modelBox" *ngFor = "let device of devices; index as i" >
+    <img class='img'src= {{images[i]}} alt=""/>
+<p class="phoneName">{{ device.deviceName }}{{i}}</p>
+<p class="phoneInfo">Year: {{ device.year }}     Processor: {{ device.processor }}</p>
+<p class="phoneDescription">{{device.description}} </p>
+<div class="dotdiv" style="text-align:left">
+    <span class="dot1"></span>
+    <span class="dot2"></span>
+    <span class="dot3"></span>
+    <span class="dot4"></span>
+    <span class="heart">&#9825;</span>
+  </div>
+
+</div>
+
+</div>

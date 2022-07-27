@@ -1,0 +1,29 @@
+<h2> Device List</h2>
+<table class = "table table-striped">
+    <thead>
+        <tr>
+            <th>Plan Name</th>
+            <th> Number of Lines</th>
+            <th> Account Id </th>
+           
+          
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let userPlan of userPlans" >
+            <td> {{ userPlan.planNameU}} </td>
+            <td> {{ userPlan.numOfLines}} </td>
+            <td> {{ userPlan.id}} </td>
+            <td>
+                <button (click) = "updatePlan()" class = "btn btn-info"> Update</button>
+                <button (click) = "deletePlan()" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+            
+            </td>
+            
+        
+             
+            
+        </tr>
+    </tbody>
+</table>
+

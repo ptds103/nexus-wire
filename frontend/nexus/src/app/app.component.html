@@ -1,0 +1,84 @@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+  rel="stylesheet"
+/>
+<nav
+  class="navbar navbar-expand-md navbar-light bg-light"
+  style="padding-right: 40px; padding-left: 40px"
+>
+  <a class="atag" href="/"> Why Nexus Wireless? </a>
+  <ul class="navbar-nav ms-auto">
+    <li class="nav-item">
+      <a
+        *ngIf="loginService.isUserLoggedIn()"
+        routerLink="users"
+        routerLinkActive="active"
+        class="nav-link"
+        >user List</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        *ngIf="loginService.isUserLoggedIn()"
+        routerLink="create-user"
+        routerLinkActive="active"
+        class="nav-link"
+        >Add user</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        *ngIf="loginService.isUserLoggedIn()"
+        routerLink="plans"
+        routerLinkActive="active"
+        class="nav-link"
+        >Add Plans</a
+      >
+    </li>
+
+    <li class="nav-item">
+      <a
+        *ngIf="loginService.isUserLoggedIn()"
+        routerLink="devices"
+        routerLinkActive="active"
+        class="nav-link"
+        >Shop For Devices</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        *ngIf="loginService.isUserLoggedIn()"
+        routerLink="overview"
+        routerLinkActive="active"
+        class="nav-link"
+        >My Account</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        *ngIf="!loginService.isUserLoggedIn()"
+        routerLink="login"
+        routerLinkActive="active"
+        class="nav-link"
+      >
+        Login</a
+      >
+    </li>
+
+    <li class="nav-item">
+      <a
+        *ngIf="loginService.isUserLoggedIn()"
+        routerLink="logout"
+        routerLinkActive="active"
+        class="nav-link"
+        >LogOut</a
+      >
+    </li>
+  </ul>
+</nav>
+
+<div class="container1">
+  <router-outlet></router-outlet>
+</div>
