@@ -24,6 +24,7 @@ import com.nexus.backend.repository.UserDeviceRepository;
 * PENDING WILL ADD ROLE-BASED FILTERS AFTER AS WE FINISH FRONT END
 *   
 */
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1/")
 public class UserDeviceController {
@@ -31,6 +32,7 @@ public class UserDeviceController {
 	@Autowired
 	private UserDeviceRepository userdeviceRepository;
 	
+	@CrossOrigin
 	@GetMapping("/user_devices")
 	public List<UserDevice> getAllUser(){
 		return userdeviceRepository.findAll();

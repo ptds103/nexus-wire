@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User, UserPlan } from '../user';
+import { User, UserDevice, PhonePlan } from '../user';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 
@@ -9,26 +9,59 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-account.component.css'],
 })
 export class UserAccountComponent implements OnInit {
-  userPlans: UserPlan[] = [];
-
-  userPlan: UserPlan = new UserPlan();
+  userDevice: UserDevice = new UserDevice();
+  userDevices: any = [];
   user: User = new User();
+  phonePlan: PhonePlan[] = [];
+  phonePlans: any = {};
   constructor(
     private route: ActivatedRoute,
     private userService: UserService
   ) {}
 
   ngOnInit(): void {
-    this.user = new User();
+    this.getUser();
+    this.getUserDevice();
+    this.getPlan();
+  }
+
+  private getUser() {
     this.userService.getUsers().subscribe((data) => {
       this.user = data;
     });
-    this.getuserPlan();
   }
-  private getuserPlan() {
-    this.userService.getUserPlans().subscribe((data) => {
-      this.userPlans = data;
-      console.log(data, 'this is user_plan');
+
+
+  //Matching userPlan with PhonePlan
+  //here, we are retrieving Plan, Cost per month and device limit
+  private getPlan() {
+    this.userService.getPhonePlans().subscribe((data) => {
+      this.phonePlan = data;
+      let temp: any = this.phonePlan;
+      for (let i = 0; i < temp.length; i++) {
+        if (temp[i].planName.toLowerCase() == this.userDevices[0].planNameD.toLowerCase()) {
+          this.phonePlans = temp[i];
+          console.log(this.phonePlans)
+        }
+      }
+    });
+  }
+
+
+  //Matching device with firstname + lastname
+  //both User and userDevice have first + last name
+  // here, we are retreving DeviceName, phoneNumber attached to the device
+  private getUserDevice() {
+    this.userService.getUserDevices().subscribe((data) => {
+      this.userDevice = data;
+
+      let temp: any = this.userDevice;
+      for (let i = 0; i < temp.length; i++) {
+          if(temp[i].userDeviceLastName === this.user.lastName){
+            this.userDevices.push(temp[i]);
+            console.log(this.userDevices, 'this is userDevicesssss')
+        }
+      }
     });
   }
 }

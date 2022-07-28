@@ -30,7 +30,6 @@ export class AuthenticationService {
       .get<User>('http://localhost:8080/api/v1/login', { headers })
       .pipe(
         map((userData) => {
-          console.log(username, password);
           sessionStorage.setItem('username', username);
           sessionStorage.setItem('password', password);
           return userData;
@@ -40,7 +39,6 @@ export class AuthenticationService {
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem('username');
-    console.log(!(user === null));
     return !(user === null);
   }
 
