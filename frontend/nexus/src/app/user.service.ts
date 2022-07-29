@@ -121,6 +121,18 @@ export class UserService {
     });
     return this.httpClient.post('http://localhost:8080/api/v1/register', user);
   }
+  createUserDevice(user: UserDevice): Observable<Object> {
+    const headers = new HttpHeaders({
+      Authorization:
+        'Basic ' +
+        btoa(
+          sessionStorage.getItem('username') +
+            ':' +
+            sessionStorage.getItem('password')
+        ),
+    });
+    return this.httpClient.post('http://localhost:8080/api/v1/user_devicess', UserDevice);
+  }
 
   getUserById(id: number): Observable<User> {
     const headers = new HttpHeaders({

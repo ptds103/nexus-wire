@@ -47,7 +47,7 @@ public class UserDeviceController {
     }
 
     @CrossOrigin
-    @PostMapping("/user_devices")
+    @PostMapping("/user_devicess")
     public UserDevice createUserDevice(@RequestBody UserDevice device) {
         return userdeviceRepository.save(device);
 

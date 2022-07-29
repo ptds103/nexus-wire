@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User, UserDevice, PhonePlan } from '../user';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../user.service';
 
 @Component({
@@ -18,9 +18,11 @@ export class UserAccountComponent implements OnInit {
   phonePlans: any = {};
   bool: boolean = true;
   bools: boolean = true;
+  numb: Number = 0;
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +31,7 @@ export class UserAccountComponent implements OnInit {
     this.getUserDevice();
     // this.getUserDevice();
     this.getPlan();
+    this.billing();
   }
 
   private getUser() {
@@ -36,13 +39,26 @@ export class UserAccountComponent implements OnInit {
       this.user = data;
     });
   }
-
+  billing() {
+    console.log(this.userDevices);
+    this.userDevices.map((e: any) => (this.numb += e.price));
+    this.phonePlan.map((e: any) =>
+      this.userPlan[0].planNameU === e.planName
+        ? (this.numb += e.pricePerLine)
+        : (this.numb = this.numb)
+    );
+    console.log(this.numb);
+  }
   private getPlan() {
     this.userService.getPhonePlans().subscribe((data) => {
       this.phonePlan = data;
     });
   }
-
+  private saveUserDevice() {
+    this.userService.createUserDevice(this.userDevice).subscribe((data) => {
+      this.router.navigate(['/overview']);
+    });
+  }
   private getUserPlan() {
     this.userService.getUserPlanByName().subscribe((data) => {
       this.userPlan = data;
@@ -74,16 +90,14 @@ export class UserAccountComponent implements OnInit {
     this.userService.getUserDevices().subscribe((data) => {
       this.userDevice = data;
       this.userDevices = this.userDevice;
-      console.log(this.userDevice, ' dddd');
-      setTimeout((e: any) => {
-        this.onClick(e);
-      }, 50);
-      setTimeout((e: any) => {
-        this.onClick(e);
-      }, 50);
+      // setTimeout((e: any) => {
+      //   this.onClick(e);
+      // }, 50);
     });
   }
-
+  onSubmits() {
+    this.saveUserDevice();
+  }
   onSubmit() {
     let a = [];
     this.getUserDevice();
@@ -101,6 +115,11 @@ export class UserAccountComponent implements OnInit {
           console.log(data, 'this is datum');
         });
     }
- 
+  }
+  reloadComponent() {
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([currentUrl]);
   }
 }
