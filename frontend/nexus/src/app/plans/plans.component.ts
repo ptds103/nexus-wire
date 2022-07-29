@@ -48,16 +48,15 @@ export class PlansComponent implements OnInit {
     let currentUserPlan = this.userPlan.find((p: any) => {
       return p.userNameU.toLowerCase() === this.user.userName.toLowerCase();
       })
-      let temp = currentUserPlan.planNameU
+      currentUserPlan.planNameU = value
       this.userService.updateUserPlan(currentUserPlan.id, currentUserPlan).subscribe((data) => {
         // data.planNameU = value
         let temp = data
         console.log(data, 'this is datum')
     })
     
-    
-    ;
-    console.log(currentUserPlan)
+
+    // console.log(currentUserPlan)
     // for (let i = 0; i < temp.length; i++) {
     //   if (
     //     temp[i].userNameU.toLowerCase() === this.user.userName.toLowerCase()
@@ -72,6 +71,11 @@ export class PlansComponent implements OnInit {
     //   }
     // )
   }
+  onSubmit() {
+    this.onClick;
+
+  };
+  
   private getUserPlan() {
     this.userService.getUserPlans().subscribe((data) => {
       this.userPlan = data;

@@ -23,7 +23,17 @@
       <p>------------------PER MONTH ----------------</p>
       <p>Device Limit: {{ plan.deviceLimit }}</p>
       <p>Features: {{ plan.description }}</p>
-      <button type="button btn btn-primary" (click)="onClick(plan.planName)" >select for the plan</button>
+      <form (ngSubmit)="onSubmit()">
+        <input
+        type="text"
+        class="form-control"
+        id="planNameU"
+        [(ngModel)]="plan.planName"
+        name="planNameU"
+      />
+
+      <button type="submit btn btn-primary" (click)="onClick(plan.planName)" >select for the plan</button>
+    </form>
     </div>
   </div>
 </div>
