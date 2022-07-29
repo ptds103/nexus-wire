@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'users', component: UserListComponent, },
   {path: 'plans', component: PlansComponent, },
 
-  {path: 'create-user', component: CreateUserComponent, canActivate:[AuthGaurdService]},
+  {path: 'create-user', component: CreateUserComponent},
 
   {path: '', component: HomeComponent},
   {path: 'update-user/:id', component: UpdateUserComponent, canActivate:[AuthGaurdService]},

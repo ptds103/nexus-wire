@@ -10,9 +10,10 @@ import { UserService } from '../user.service';
 })
 export class UserAccountComponent implements OnInit {
   userDevice: UserDevice = new UserDevice();
-
+  userPlan: any = [];
   userDevices: any = [];
   user: User = new User();
+  displayPhonePlan: any = {}
   phonePlan: PhonePlan[] = [];
   phonePlans: any = {};
   constructor(
@@ -21,35 +22,34 @@ export class UserAccountComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getUserPlan();
     this.getUser();
     this.getUserDevice();
     this.getPlan();
+
   }
 
   private getUser() {
-    this.userService.getUsers().subscribe((data) => {
+     this.userService.getUsers().subscribe((data) => {
       this.user = data;
     });
   }
 
-  //Matching userPlan with PhonePlan
-  //here, we are retrieving Plan, Cost per month and device limit
-  //when demonstating, do not delete all devices, it will break
   private getPlan() {
     this.userService.getPhonePlans().subscribe((data) => {
       this.phonePlan = data;
-      let temp: any = this.phonePlan;
-      for (let i = 0; i < temp.length; i++) {
-        if (
-          temp[i].planName.toLowerCase() ==
-          this.userDevices[0].planNameD.toLowerCase()
-        ) {
-          this.phonePlans = temp[i];
-        }
-      }
+      this.dataManipulation()
     });
   }
-
+  dataManipulation() {
+  let tempPlan = this.userPlan.find((p: any) => {
+    return p.userNameU.toLowerCase() === this.user.userName.toLowerCase();
+  });
+  console.log(tempPlan)
+  this.displayPhonePlan = this.phonePlan.find((p) => {
+    return p.planName.toLowerCase() === tempPlan.planNameU.toLowerCase();
+  });
+  }
   //Matching device with firstname + lastname
   //both User and userDevice have first + last name
   // here, we are retreving DeviceName, phoneNumber attached to the device
@@ -62,6 +62,12 @@ export class UserAccountComponent implements OnInit {
           this.userDevices.push(temp[i]);
         }
       }
+    });
+  }
+
+  private getUserPlan() {
+    this.userService.getUserPlans().subscribe((data) => {
+      this.userPlan = data;
     });
   }
 }

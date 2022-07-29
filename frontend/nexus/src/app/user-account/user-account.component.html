@@ -9,17 +9,17 @@
   </div>
   <div class="planOuterBox">
     <div class="planBox">
-      <p class="planBox1">
+      <p class="planBox1" *ngIf="displayPhonePlan.planName">
         Plan<br />
-        {{ phonePlans.planName }}
+        {{ displayPhonePlan.planName }}
       </p>
       <p class="planBox2">
         Cost<br />
-        ${{ phonePlans.pricePerLine }}/Month
+        ${{ displayPhonePlan.pricePerLine }}/Month
       </p>
       <p class="planBox3">
         Device Limits<br />
-        {{ phonePlans.deviceLimit }}
+        {{ displayPhonePlan.deviceLimit }}
       </p>
       <br />
       <a class="planBox4" href="/devices">Add a Device</a>

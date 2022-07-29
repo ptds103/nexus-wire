@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,6 +17,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,50 +27,52 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
+import com.nexus.backend.repository.CustomUserDetailsService;
+
 @Configuration
 @EnableWebSecurity
 
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 @Autowired
-DataSource dataSource;
+private DataSource dataSource;
 
-@Autowired
-public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-    auth.jdbcAuthentication()
-   // .passwordEncoder(getPasswordEncoder())
-    .dataSource(dataSource);
-    }
-//Commented out the password encoder its giving me errors.
-// 7/20/22 Security verifies role and password based on user name, and restricts acess
+@Bean
+public UserDetailsService userDetailsService() {
+	return new CustomUserDetailsService();
+}
+@Bean
+public BCryptPasswordEncoder passwordEncoder() {
+	return new BCryptPasswordEncoder();
+}
+@Bean
+public DaoAuthenticationProvider authenticationProvider() {
+	DaoAuthenticationProvider authprovider = new DaoAuthenticationProvider();
+	authprovider.setUserDetailsService(userDetailsService());
+	authprovider.setPasswordEncoder(passwordEncoder());
+	return authprovider;
+}
 
-//@Autowired
-//public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//  auth.inMemoryAuthentication()
-//      .withUser("admin")
-//      .password("password")
-//      .authorities("USER");
-//}
+@Override
+public void configure(AuthenticationManagerBuilder auth) throws Exception {
+	auth.authenticationProvider(authenticationProvider());
 	
+  
+   }
+
     
-    	@Override
-    	protected void configure(HttpSecurity http) throws Exception {
-//    		http.
-//    				authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated()
-//    				.and().httpBasic();
-    		
- 		http.cors().and().csrf().disable().authorizeRequests()
-  		.antMatchers("/**").permitAll().anyRequest().anonymous().and().httpBasic();
-    	
-    		
-    		
+ @Override
+protected void configure(HttpSecurity http) throws Exception {
+http.cors().and().csrf().disable();
+//.antMatchers("/api/v1/login").permitAll()
+//.antMatchers("/api/v1/register").permitAll().anyRequest().authenticated().and().formLogin();
+
+http.httpBasic().and().authorizeRequests()
+	.antMatchers("/api/v1/login", "/api/v1/register").permitAll()
+	.anyRequest().authenticated();
         
     }
     
-    @Bean
-    public PasswordEncoder getPasswordEncoder() {
-    	return NoOpPasswordEncoder.getInstance();
-    }
     
    
 }

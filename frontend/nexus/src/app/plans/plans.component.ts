@@ -51,35 +51,17 @@ export class PlansComponent implements OnInit {
       currentUserPlan.planNameU = value
       this.userService.updateUserPlan(currentUserPlan.id, currentUserPlan).subscribe((data) => {
         // data.planNameU = value
-        let temp = data
-        console.log(data, 'this is datum')
     })
     
-
-    // console.log(currentUserPlan)
-    // for (let i = 0; i < temp.length; i++) {
-    //   if (
-    //     temp[i].userNameU.toLowerCase() === this.user.userName.toLowerCase()
-    //   ) {
-    //     this.singlePlan = temp[i];
-    //   }
-
-    // }
-    // this.userService.updateUserPlan(this.singlePlan.id, this.singlePlan).subscribe(
-    //   data => {
-    //     this.goToUserList();
-    //   }
-    // )
   }
   onSubmit() {
-    this.onClick;
+    this.goToUserList();
 
   };
   
   private getUserPlan() {
     this.userService.getUserPlans().subscribe((data) => {
       this.userPlan = data;
-      console.log(this.userPlan);
     });
   }
 
@@ -88,6 +70,6 @@ export class PlansComponent implements OnInit {
   }
 
   goToUserList() {
-    this.router.navigate(['/users']);
+    this.router.navigate(['/overview']);
   }
 }

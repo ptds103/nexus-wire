@@ -7,6 +7,7 @@ import com.nexus.backend.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,20 +32,7 @@ public class UserPlanController {
 	public List<UserPlan> getAllUser(){
 		return userPlanRepository.findAll();
 	}
-	
-	
-	//USER USE
-	//Get Plan Associated with User
-	//MOVE TO USER PLANS
-	@CrossOrigin
-	@GetMapping("/user_plan")
-	public ResponseEntity<UserPlan> getUserPlanByName(Authentication auth ) {
-		String temp = auth.getName();
-		System.out.println(temp);
-		//User user = userRepository.findByusername("David99");
-		UserPlan plan = userPlanRepository.findByuserNameU(temp);
-	return ResponseEntity.ok(plan); 
-	}
+
 	
 	@CrossOrigin
 	@GetMapping("/user_plans/{id}")
@@ -72,5 +60,13 @@ public class UserPlanController {
 			return ResponseEntity.ok(updateduserPlan);
 		}
 
+		@CrossOrigin
+		@GetMapping("/user_plan")
+		public List<UserPlan> getUserDeviceByName(Authentication auth) {
+			String temp = auth.getName();
+			System.out.println(temp);
+			return (List<UserPlan>) userPlanRepository.findByuserNameU(temp);
+		}
+	
 		
 }

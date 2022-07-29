@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User, Device, UserPlan, PhonePlan, UserDevice } from './user';
+import { User, Device, UserPlan, PhonePlan, UserDevice, RegUser } from './user';
 
 @Injectable({
   providedIn: 'root',
@@ -40,7 +40,8 @@ export class UserService {
       'http://localhost:8080/api/v1/user_devices',
       {
         headers,
-      });
+      }
+    );
   }
 
   getPhonePlans(): Observable<PhonePlan[]> {
@@ -74,7 +75,7 @@ export class UserService {
     });
   }
 
-  createUser(user: User): Observable<Object> {
+  getUserPlanByName(): Observable<UserPlan> {
     const headers = new HttpHeaders({
       Authorization:
         'Basic ' +
@@ -84,7 +85,24 @@ export class UserService {
             sessionStorage.getItem('password')
         ),
     });
-    return this.httpClient.post(`${this.baseURL}`, user);
+
+    return this.httpClient.get<UserPlan>(
+      'http://localhost:8080/api/v1/user_planning',
+      { headers }
+    );
+  }
+
+  createUser(user: RegUser): Observable<Object> {
+    const headers = new HttpHeaders({
+      Authorization:
+        'Basic ' +
+        btoa(
+          sessionStorage.getItem('username') +
+            ':' +
+            sessionStorage.getItem('password')
+        ),
+    });
+    return this.httpClient.post('http://localhost:8080/api/v1/register', user);
   }
 
   getUserById(id: number): Observable<User> {
@@ -125,12 +143,15 @@ export class UserService {
             sessionStorage.getItem('password')
         ),
     });
-    return this.httpClient.put(`http://localhost:8080/api/v1/user_plans/${id}`, userPlan, { headers });
+    return this.httpClient.put(
+      `http://localhost:8080/api/v1/user_plans/${id}`,
+      userPlan,
+      { headers }
+    );
     //return this.httpClient.put(`${this.baseURL}/${id}`, user);
     // this.http.put<any>('https://jsonplaceholder.typicode.com/posts/1', body)
     //     .subscribe(data => this.postId = data.id);
   }
-
 
   deleteUser(id: number): Observable<Object> {
     const headers = new HttpHeaders({
