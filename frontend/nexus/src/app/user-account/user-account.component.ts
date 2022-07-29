@@ -10,6 +10,7 @@ import { UserService } from '../user.service';
 })
 export class UserAccountComponent implements OnInit {
   userDevice: UserDevice = new UserDevice();
+
   userDevices: any = [];
   user: User = new User();
   phonePlan: PhonePlan[] = [];
@@ -31,22 +32,23 @@ export class UserAccountComponent implements OnInit {
     });
   }
 
-
   //Matching userPlan with PhonePlan
   //here, we are retrieving Plan, Cost per month and device limit
+  //when demonstating, do not delete all devices, it will break
   private getPlan() {
     this.userService.getPhonePlans().subscribe((data) => {
       this.phonePlan = data;
       let temp: any = this.phonePlan;
       for (let i = 0; i < temp.length; i++) {
-        if (temp[i].planName.toLowerCase() == this.userDevices[0].planNameD.toLowerCase()) {
+        if (
+          temp[i].planName.toLowerCase() ==
+          this.userDevices[0].planNameD.toLowerCase()
+        ) {
           this.phonePlans = temp[i];
-          console.log(this.phonePlans)
         }
       }
     });
   }
-
 
   //Matching device with firstname + lastname
   //both User and userDevice have first + last name
@@ -54,12 +56,10 @@ export class UserAccountComponent implements OnInit {
   private getUserDevice() {
     this.userService.getUserDevices().subscribe((data) => {
       this.userDevice = data;
-
       let temp: any = this.userDevice;
       for (let i = 0; i < temp.length; i++) {
-          if(temp[i].userDeviceLastName === this.user.lastName){
-            this.userDevices.push(temp[i]);
-            console.log(this.userDevices, 'this is userDevicesssss')
+        if (temp[i].userDeviceLastName === this.user.lastName) {
+          this.userDevices.push(temp[i]);
         }
       }
     });

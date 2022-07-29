@@ -1,6 +1,7 @@
 <div class="planHead">
   Getting an <br />
   umlimited plan has never been this easy.
+  <p>{{singlePlan.planNameU}}</p>
   <img class="earth" [src]="myearth" alt="" width="55px" />
 </div>
 
@@ -22,6 +23,7 @@
       <p>------------------PER MONTH ----------------</p>
       <p>Device Limit: {{ plan.deviceLimit }}</p>
       <p>Features: {{ plan.description }}</p>
+      <button type="button btn btn-primary" (click)="onClick(plan.planName)" >select for the plan</button>
     </div>
   </div>
 </div>

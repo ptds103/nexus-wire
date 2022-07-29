@@ -1,4 +1,3 @@
-
 .accountPage {
   margin: 150px;
   margin-bottom: 0px;
@@ -96,14 +95,14 @@
   text-decoration: none;
   color: red;
 }
-.rightBox{
-    position:fixed;
-    margin-left: 100px;
-    display: inline-block;
-    border: 1px solid #dadada;
-    height: 645px;
-    width: 320px;
+.rightBox {
+  position: fixed;
+  margin-left: 100px;
+  display: inline-block;
+  border: 1px solid #dadada;
+  height: 645px;
+  width: 320px;
 }
-.infoBox{
-    margin:20px;
+.infoBox {
+  margin: 20px;
 }

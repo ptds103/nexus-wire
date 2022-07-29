@@ -5,31 +5,38 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
-  styleUrls: ['./update-user.component.css']
+  styleUrls: ['./update-user.component.css'],
 })
 export class UpdateUserComponent implements OnInit {
-
   id: number = 0;
   user: User = new User();
-  constructor(private userService: UserService,
+  constructor(
+    private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-  this.id = this.route.snapshot.params['id'];
-  this.userService.getUserById(this.id).subscribe(data => {
-    this.user = data;
-  }, error => console.log(error));
-}
-
-onSubmit(){
-  this.userService.updateUser(this.id, this.user).subscribe( data =>{
-    this.goToUserList();
+    this.id = this.route.snapshot.params['id'];
+    this.userService.getUserById(this.id).subscribe(
+      (data) => {
+        this.user = data;
+        console.log(data, 'this is data')
+      },
+      (error) => console.log(error)
+    );
   }
-  , error => console.log(error));
-}
 
-goToUserList(){
-  this.router.navigate(['/users']);
-}
+  onSubmit() {
+    this.userService.updateUser(this.id, this.user).subscribe(
+      (data) => {
+        this.goToUserList();
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  goToUserList() {
+    this.router.navigate(['/users']);
+  }
 }

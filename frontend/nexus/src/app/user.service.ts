@@ -115,6 +115,23 @@ export class UserService {
     //return this.httpClient.put(`${this.baseURL}/${id}`, user);
   }
 
+  updateUserPlan(id: number, userPlan: UserPlan): Observable<Object> {
+    const headers = new HttpHeaders({
+      Authorization:
+        'Basic ' +
+        btoa(
+          sessionStorage.getItem('username') +
+            ':' +
+            sessionStorage.getItem('password')
+        ),
+    });
+    return this.httpClient.put(`http://localhost:8080/api/v1/user_plans/${id}`, userPlan, { headers });
+    //return this.httpClient.put(`${this.baseURL}/${id}`, user);
+    // this.http.put<any>('https://jsonplaceholder.typicode.com/posts/1', body)
+    //     .subscribe(data => this.postId = data.id);
+  }
+
+
   deleteUser(id: number): Observable<Object> {
     const headers = new HttpHeaders({
       Authorization:

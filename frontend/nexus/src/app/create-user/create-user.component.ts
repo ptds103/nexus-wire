@@ -19,18 +19,16 @@ export class CreateUserComponent implements OnInit {
   }
   saveEmployee(){
     this.userService.createUser(this.user).subscribe( data =>{
-      console.log(data);
       this.goToEmployeeList();
     },
     error => console.log(error));
   }
 
   goToEmployeeList(){
-    this.router.navigate(['/user']);
+    this.router.navigate(['/overview']);
   }
   
   onSubmit(){
-    console.log(this.user);
     this.saveEmployee();
   }
 }
