@@ -43,6 +43,23 @@ export class UserService {
       }
     );
   }
+  getUserDevice(): Observable<UserDevice> {
+    const headers = new HttpHeaders({
+      Autorization:
+        'Basic' +
+        btoa(
+          sessionStorage.getItem('username') +
+            ':' +
+            sessionStorage.getItem('password')
+        ),
+    });
+    return this.httpClient.get<UserDevice>(
+      'http://localhost:8080/api/v1/user_device',
+      {
+        headers,
+      }
+    );
+  }
 
   getPhonePlans(): Observable<PhonePlan[]> {
     const headers = new HttpHeaders({
@@ -87,7 +104,7 @@ export class UserService {
     });
 
     return this.httpClient.get<UserPlan>(
-      'http://localhost:8080/api/v1/user_planning',
+      'http://localhost:8080/api/v1/user_plan',
       { headers }
     );
   }
@@ -132,6 +149,24 @@ export class UserService {
     return this.httpClient.put(`${this.baseURL}/${id}`, user, { headers });
     //return this.httpClient.put(`${this.baseURL}/${id}`, user);
   }
+  updateUserDevice(id: number, userDevice: UserDevice): Observable<Object> {
+    const headers = new HttpHeaders({
+      Authorization:
+        'Basic ' +
+        btoa(
+          sessionStorage.getItem('username') +
+            ':' +
+            sessionStorage.getItem('password')
+        ),
+    });
+    console.log(userDevice)
+    return this.httpClient.put(
+      `http://localhost:8080/api/v1/user_devices/${id}`,
+      userDevice,
+      { headers }
+    );
+    //return this.httpClient.put(`${this.baseURL}/${id}`, user);
+  }
 
   updateUserPlan(id: number, userPlan: UserPlan): Observable<Object> {
     const headers = new HttpHeaders({
@@ -164,6 +199,22 @@ export class UserService {
         ),
     });
     return this.httpClient.delete(`${this.baseURL}/${id}`, { headers });
+    //return this.httpClient.delete(`${this.baseURL}/${id}`);
+  }
+  deleteUserDevice(id: number): Observable<Object> {
+    const headers = new HttpHeaders({
+      Authorization:
+        'Basic ' +
+        btoa(
+          sessionStorage.getItem('username') +
+            ':' +
+            sessionStorage.getItem('password')
+        ),
+    });
+    return this.httpClient.delete(
+      `http://localhost:8080/api/v1/user_devices/${id}`,
+      { headers }
+    );
     //return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
 

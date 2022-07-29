@@ -11,7 +11,7 @@ import com.nexus.backend.model.UserPlan;
 
 @Repository
 public interface UserDeviceRepository extends JpaRepository<UserDevice, Long>{
-	List<UserDevice> findByusername(String string);
+	// List<UserDevice> findByusername(String string);
 
 
 	

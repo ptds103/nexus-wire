@@ -68,7 +68,7 @@ http.cors().and().csrf().disable();
 //.antMatchers("/api/v1/register").permitAll().anyRequest().authenticated().and().formLogin();
 
 http.httpBasic().and().authorizeRequests()
-	.antMatchers("/api/v1/login", "/api/v1/register").permitAll()
+	.antMatchers("/api/v1/login", "/api/v1/register", "/api/v1/user_devices", "/api/v1/user_devices/:id").permitAll()
 	.anyRequest().authenticated();
         
     }

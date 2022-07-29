@@ -33,9 +33,9 @@ export class PlansComponent implements OnInit {
 
   private getUser() {
     this.userService.getUsers().subscribe((data) => {
-      this.user = data;
-    });
-  }
+     this.user = data;
+   });
+ }
 
   private getPlans() {
     this.userService.getPhonePlans().subscribe((data) => {
@@ -44,17 +44,36 @@ export class PlansComponent implements OnInit {
   }
   onClick(value: any) {
     console.log(value);
-    // let temp: any = this.userPlan;
+    console.log(this.userPlan)
     let currentUserPlan = this.userPlan.find((p: any) => {
-      return p.userNameU.toLowerCase() === this.user.userName.toLowerCase();
+      return p.userNameU.toLowerCase() === Object.values(this.user)[5].toLowerCase();
       })
+      console.log(currentUserPlan)
       currentUserPlan.planNameU = value
       this.userService.updateUserPlan(currentUserPlan.id, currentUserPlan).subscribe((data) => {
         // data.planNameU = value
+        let temp = data
+        console.log(data, 'this is datum')
     })
     
+
+    // console.log(currentUserPlan)
+    // for (let i = 0; i < temp.length; i++) {
+    //   if (
+    //     temp[i].userNameU.toLowerCase() === this.user.userName.toLowerCase()
+    //   ) {
+    //     this.singlePlan = temp[i];
+    //   }
+
+    // }
+    // this.userService.updateUserPlan(this.singlePlan.id, this.singlePlan).subscribe(
+    //   data => {
+    //     this.goToUserList();
+    //   }
+    // )
   }
   onSubmit() {
+    // this.onClick;
     this.goToUserList();
 
   };
@@ -62,6 +81,7 @@ export class PlansComponent implements OnInit {
   private getUserPlan() {
     this.userService.getUserPlans().subscribe((data) => {
       this.userPlan = data;
+      console.log(this.userPlan);
     });
   }
 

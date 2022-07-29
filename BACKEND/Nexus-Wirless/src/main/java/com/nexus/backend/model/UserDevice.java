@@ -34,12 +34,15 @@ public class UserDevice {
 	@Column(name = "user_device_last_name")
 	private String userDeviceLastName;
 
+	@Column(name = "price")
+	private Double price;
+
 	public UserDevice() {
 
 	}
 
 	public UserDevice(String idUserDevice, String username, String deviceNameD, String phoneNumberD, String planNameD,
-			String userDeviceFirstName, String userDeviceLastName) {
+			String userDeviceFirstName, String userDeviceLastName, Double price) {
 		super();
 
 		this.deviceNameD = deviceNameD;
@@ -48,6 +51,7 @@ public class UserDevice {
 		this.userDeviceFirstName = userDeviceFirstName;
 		this.userDeviceLastName = userDeviceLastName;
 		this.username = username;
+		this.price = price;
 
 	}
 
@@ -105,5 +109,12 @@ public class UserDevice {
 
 	public void setUserDeviceLastName(String userDeviceLastName) {
 		this.userDeviceLastName = userDeviceLastName;
+	}
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 }

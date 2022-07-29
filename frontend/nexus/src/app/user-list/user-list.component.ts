@@ -21,7 +21,6 @@ export class UserListComponent implements OnInit {
   private getUsers(){
     this.userService.getUsersList().subscribe(data => {
       this.users = data;
-      console.log(data)
     });
   }
   userDetails(id: number){
@@ -33,7 +32,6 @@ export class UserListComponent implements OnInit {
 
   deleteUser(id: number){
     this.userService.deleteUser(id).subscribe( data => {
-      console.log(data);
       this.getUsers();
     })
   }

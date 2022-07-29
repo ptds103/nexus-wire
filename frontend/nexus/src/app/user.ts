@@ -6,14 +6,15 @@ export class User {
   lastName: string = '';
   email: string = '';
 }
+
 export class RegUser {
   username: string = '';
   password: string = '';
   firstName: string = '';
   lastName: string = '';
   email: string = '';
-
 }
+
 export class Device {
   id: number = 0;
   deviceName: string = '';
@@ -44,4 +45,5 @@ export class UserDevice {
   planName: string = '';
   userDeviceFirstName: string = '';
   userDeviceLastName: string = '';
+  price: Number = 0;
 }

@@ -1,3 +1,4 @@
+
 .accountPage {
   margin: 150px;
   margin-bottom: 0px;
@@ -7,8 +8,11 @@
   margin-bottom: 60px;
 }
 .planOuterBox {
+  position:absolute;
+  top: 275px;
+
   display: inline-block;
-  width: 950px;
+  width: 1100px;
   background: #ffffff;
   border: 0.5px solid #cdcdcd;
 }
@@ -42,13 +46,13 @@
   display: inline-block;
 }
 .planBox4 {
-  margin-left: 765px;
+  margin-left: 565px;
   margin-bottom: 20px;
   text-decoration: none;
 }
 .planInnerBox {
   width: 100%;
-  height: 320px;
+  height: 420px;
   left: 258px;
   top: 889px;
   margin-top: 10px;
@@ -95,14 +99,14 @@
   text-decoration: none;
   color: red;
 }
-.rightBox {
-  position: fixed;
-  margin-left: 100px;
-  display: inline-block;
-  border: 1px solid #dadada;
-  height: 645px;
-  width: 320px;
+.rightBox{
+    position:absolute;
+    margin-left: 1200px;
+    display: inline-block;
+    border: 1px solid #dadada;
+    height: 645px;
+    width: 320px;
 }
-.infoBox {
-  margin: 20px;
+.infoBox{
+    margin:20px;
 }
